@@ -6,4 +6,20 @@ class CouponsController < ApplicationController
   def new
     # @coupon = Coupon.new
   end
+
+  def create
+    @coupon = Coupon.create(coupon_params)
+
+    # redirect_to coupon_path(@coupon)
+    redirect_to coupons_path
+  end
+
+  def show
+    @coupon = Coupon.find(params[:id])
+  end
+
+  private
+  def coupon_params
+    params.permit(:coupon_code, :store)
+  end
 end
